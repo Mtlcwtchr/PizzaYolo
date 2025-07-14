@@ -1,17 +1,19 @@
 using System;
 using System.Collections.Generic;
 using Fusion;
+using Source.Essentials.Networking.State;
+using Source.Essentials.Networking.World;
 using UnityEngine;
 
-namespace Source.Essentials.Networking
+namespace Source.Essentials.Networking.Mode
 {
     public class GameModeBase : NetworkBehaviour
     {
         public event Action OnPlayersJoined;
         public event Action OnGameStarted;
         
-        private readonly List<PlayerController> _players = new();
-        private readonly List<PlayerController> _readyPlayers = new();
+        private readonly List<Controller.PlayerController> _players = new();
+        private readonly List<Controller.PlayerController> _readyPlayers = new();
 
         private PlayerRef _gameplayOwner;
 
@@ -25,7 +27,7 @@ namespace Source.Essentials.Networking
             WorldBase.Instance.OnPlayerRegistered += PlayerRegistered;
         }
 
-        private void PlayerRegistered(PlayerController player)
+        private void PlayerRegistered(Controller.PlayerController player)
         {
             if (!HasStateAuthority)
                 return;

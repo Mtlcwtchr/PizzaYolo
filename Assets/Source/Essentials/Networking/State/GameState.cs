@@ -1,6 +1,7 @@
 using Fusion;
+using Source.Essentials.Networking.World;
 
-namespace Source.Essentials.Networking
+namespace Source.Essentials.Networking.State
 {
     public partial class GameState : NetworkBehaviour
     {

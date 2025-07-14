@@ -1,8 +1,9 @@
 using System;
 using Fusion;
 using Source.Essentials.Networking.AttributeControl;
+using Source.Essentials.Networking.World;
 
-namespace Source.Essentials.Networking
+namespace Source.Essentials.Networking.Controller
 {
     public partial class PlayerController : NetworkBehaviour
     {

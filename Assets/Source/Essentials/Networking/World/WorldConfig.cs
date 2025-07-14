@@ -1,7 +1,9 @@
 using Fusion;
+using Source.Essentials.Networking.Mode;
+using Source.Essentials.Networking.State;
 using UnityEngine;
 
-namespace Source.Essentials.Networking
+namespace Source.Essentials.Networking.World
 {
     [CreateAssetMenu(fileName = "WorldConfig", menuName = "Networking/World/World Config")]
     public class WorldConfig : ScriptableObject

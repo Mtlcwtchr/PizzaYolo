@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Fusion;
+using Source.Essentials.Networking.Mode;
+using Source.Essentials.Networking.State;
 using UnityEngine;
 
-namespace Source.Essentials.Networking
+namespace Source.Essentials.Networking.World
 {
     public class WorldBase : NetworkBehaviour, IPlayerJoined
     {
         [SerializeField] private WorldConfig worldConfig;
         
-        public event Action<PlayerController> OnPlayerRegistered;
+        public event Action<Controller.PlayerController> OnPlayerRegistered;
         public event Action<PlayerState> OnPlayerStateRegistered;
         
         public static WorldBase Instance { get; private set; }
@@ -18,13 +20,13 @@ namespace Source.Essentials.Networking
         public GameModeBase GameMode { get; private set; }
         public GameState GameState { get; private set; }
 
-        public PlayerController LocalPlayer { get; private set; }
+        public Controller.PlayerController LocalPlayer { get; private set; }
         public PlayerState PlayerState { get; private set; }
 
-        public PlayerController Enemy { get; private set; }
+        public Controller.PlayerController Enemy { get; private set; }
         public PlayerState EnemyState { get; private set; }
 
-        public Dictionary<PlayerRef, PlayerController> ActivePlayers { get; } = new();
+        public Dictionary<PlayerRef, Controller.PlayerController> ActivePlayers { get; } = new();
         public Dictionary<PlayerRef, PlayerState> PlayerStates { get; } = new();
 
         private void Awake()
@@ -49,7 +51,7 @@ namespace Source.Essentials.Networking
             GameState = gameState;
         }
 
-        public void Register(PlayerController localPlayer)
+        public void Register(Controller.PlayerController localPlayer)
         {
             ActivePlayers.Add(localPlayer, localPlayer);
             if (Runner.IsClient)
